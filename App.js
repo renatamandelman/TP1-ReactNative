@@ -1,13 +1,21 @@
 import React from 'react';
+import { useState } from 'react';
 import { StyleSheet, Button, View, SafeAreaView, Text, Alert, TextInput  } from 'react-native';
 
 
 
 const App = () => {
-  const [text, onChangeText] = React.useState("Segui la frase...");
+  const [text, setText] = useState("");
+  const [mostrar,setMostrar] = useState("")
+
   const Separator = () => (
     <View style={styles.separator} />
   );
+  const handleText=(value) => {
+
+    setText(value)
+    console.log(text)
+  }
   
   return(
   <SafeAreaView style={styles.container}>
@@ -16,17 +24,19 @@ const App = () => {
         Sacchi y Renata son....
       </Text>
       <TextInput style={styles.input}
-        onChangeText={onChangeText}
-        value={text} > </TextInput>
+        onChangeText={(value)=> handleText(value)}
+         > </TextInput>
      
       <Button
-        title="apreta para averiguarr"
-        onPress={() => Alert.alert('los mas facheros de ort')}
+        title="Manda tu respuesta"
+        color='#007AFF'
+        onPress={() => setMostrar(text)}
       />    
-
-
+      
     </View>
     <Separator />
+
+    <Text style={styles.text}>Respuesta:{mostrar}</Text>
 
     
   </SafeAreaView>
@@ -42,6 +52,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 8,
     fontSize: 20,
+    justifyContent:'center',
   },
   fixToText: {
     flexDirection: 'row',
@@ -55,10 +66,15 @@ const styles = StyleSheet.create({
   },
   separator: {
     marginVertical: 8,
-    borderBottomColor: '#737373',
+  
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
 
+  button: {
+    alignItems: "center",
+    backgroundColor: "#00000",
+    padding: 10
+  },
  
 });
 
