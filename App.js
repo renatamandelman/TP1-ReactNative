@@ -1,46 +1,49 @@
 import React from 'react';
 import { useState } from 'react';
-import { StyleSheet, Button, View, SafeAreaView, Text, Alert, TextInput  } from 'react-native';
+import { StyleSheet, Button, View, SafeAreaView, Text, TextInput, Alert } from 'react-native';
 
 
 
 const App = () => {
   const [text, setText] = useState("");
-  const [mostrar,setMostrar] = useState("")
+  const [mostrar, setMostrar] = useState("")
 
   const Separator = () => (
     <View style={styles.separator} />
   );
-  const handleText=(value) => {
+  const handleText = (value) => {
 
-    setText(value)
+    setMostrar(value)
     console.log(text)
   }
-  
-  return(
-  <SafeAreaView style={styles.container}>
-    <View> 
-      <Text style={styles.text}>
-        Sacchi y Renata son....
-      </Text>
-      <TextInput style={styles.input}
-        onChangeText={(value)=> handleText(value)}
-         > </TextInput>
-     
-      <Button
-        title="Manda tu respuesta"
-        color='#007AFF'
-        onPress={() => setMostrar(text)}
-      />    
-      
-    </View>
-    <Separator />
 
-    <Text style={styles.text}>Respuesta:{mostrar}</Text>
+  return (
+    <SafeAreaView style={styles.container}>
+      <View>
+        <Text style={styles.text}>
+          Sacchi y Renata son....
+        </Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={setText}
+          value={text}
+          placeholder={"Ingrese su texto"}
+        />
+        <Text style={styles.counter}>{text.length}</Text>
+        <Button
+          title="Manda tu respuesta"
+          color='#007AFF'
+          onPress={() => handleText(text)}
+        />
 
-    
-  </SafeAreaView>
-)};
+      </View>
+      <Separator />
+
+
+      <Text>{mostrar}</Text>
+    </SafeAreaView>
+  )
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -52,7 +55,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 8,
     fontSize: 20,
-    justifyContent:'center',
+    justifyContent: 'center',
   },
   fixToText: {
     flexDirection: 'row',
@@ -66,7 +69,7 @@ const styles = StyleSheet.create({
   },
   separator: {
     marginVertical: 8,
-  
+
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
 
@@ -75,7 +78,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#00000",
     padding: 10
   },
- 
+  counter: {
+    textAlign: 'right',
+    marginVertical: 8,
+    fontSize: 20,
+    justifyContent: 'right',
+  }
+
 });
 
 export default App;
