@@ -21,13 +21,13 @@ const App = () => {
     <SafeAreaView style={styles.container}>
       <View>
         <Text style={styles.text}>
-          Sacchi y Renata son....
+          Sacchi, Rena y Lucio son....
         </Text>
         <TextInput
           style={styles.input}
           onChangeText={setText}
           value={text}
-          placeholder={"Ingrese su texto"}
+          placeholder={"Ingrese su respuesta"}
         />
         <Text style={styles.counter}>{text.length}</Text>
         <Button
